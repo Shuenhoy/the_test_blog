@@ -6,10 +6,10 @@ var dis = document.getElementById('disqus_thread');
 var xmlhttp;
 var disqus_url;
 
-var disqus_shortname = 'hooloodemo';
-var hostbase = 'http://hooloo.github.io';
-var githubname = 'hooloo';
-var repos = 'hooloo.github.io';
+var disqus_shortname = '';
+var hostbase = 'http://shuenhoy.com/the_test_blog';
+var githubname = 'shuenhoy';
+var repos = 'the_test_blog';
 
 main();
 
