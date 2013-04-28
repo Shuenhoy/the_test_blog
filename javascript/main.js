@@ -111,10 +111,10 @@ var app = Sammy(function() {
 
 	function getPost(postList, index, callback) {
 		if(!postList[index]) return callback();
-		console.log('post/' + postList[index][1])
+
 		$.get('post/' + postList[index][1] , function(data) {
 
-			database.posts[index] = readPostInfo(data, postList[index]);
+			database.posts[index] = readPostInfo(data, postList[index][0]);
 			getPost(postList, index + 1, callback);
 		}); 
 	}
@@ -127,7 +127,7 @@ var app = Sammy(function() {
 			database.version = newVersion;
 			var postList = manages[config.manage.type].getlist(config);
 			for(var i in postList){
-				postList[i] = [postList[i].replace(/^([0-9]*-[0-9]*-[0-9]*-)/,'').replace(/\.md$/,''),postList[i]];
+				postList[i] = [postList[i].replace(/^([0-9]*-[0-9]*-[0-9]*-)/,'').replace(/\.md$/,''),postList[i].replace(/\.md/g,'.md')];
 			}
 			getPost(postList, 0, function() {
 				localStorage.database = JSON.stringify(database);
@@ -140,6 +140,8 @@ var app = Sammy(function() {
 
 
 	this.get('#!/', function() {
+		var html = template.render('loading-tmpl', config);
+		main_content.html(html);
 		update(function() {
 			var html = template.render('index-tmpl', database);
 			$("title").text("Home | "+config.title);
@@ -152,17 +154,15 @@ var app = Sammy(function() {
 		
 		return false;
   	}
-  	this.get("#!/404",function() {
-  		var html = template.render('404-tmpl', post);
-		main_content.html(html);
-		console.log(html)
-  	});
+  	
 	this.get(config.routes.post, function() {
 		//this.params['year']
 		//this.params['month']
 		//this.params['day']
 		var post;
 		var name = this.params['name'];
+		var html = template.render('loading-tmpl', config);
+		main_content.html(html);
 		for(var i in database.posts) {
 			if(database.posts[i].name == name) {
 				post = database.posts[i];
@@ -180,7 +180,8 @@ var app = Sammy(function() {
 	this.get(config.routes.page, function() {
 		var post;
 		var name = this.params['name'];
-
+		var html = template.render('loading-tmpl', config);
+		main_content.html(html);
 		$.get('page/' + name + '.md', function(data) {
 			var page = readPostInfo(data, name);
 			var html = template.render('page-tmpl', page);
@@ -188,7 +189,9 @@ var app = Sammy(function() {
 			$("title").text(page.title+" | "+config.title);
 			$('pre code').each(function(i, e) {hljs.highlightBlock(e)});
 			
-		});
+		}).fail(function(){ 
+  			this.notFound();
+})		});
 
 
 
@@ -203,3 +206,4 @@ var app = Sammy(function() {
 
 // start the application
 app.run('#!/');
+
