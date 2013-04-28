@@ -169,28 +169,38 @@ code, pre {
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal;
   color: #222;
   margin-bottom: 30px;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 code {
   background-color: #f2f2f2;
   border: solid 1px #ddd;
+
   padding: 0 3px;
+  text-indent: 0;
+  overflow: auto;
+  width: 100%;
 }
 
+ /* 
 pre {
+ 
+
   padding: 20px;
   background: #303030;
   color: #f2f2f2;
+  
   text-shadow: none;
-  overflow: auto;
-}
-pre code {
+ 
+  
+  
+} */
+/*pre code {
   color: #f2f2f2;
   background-color: #303030;
   border: none;
   padding: 0;
-}
+}*/
 
 ul, ol, dl {
   margin-bottom: 20px;
@@ -236,19 +246,55 @@ form {
   padding: 20px;
   
 }
+a.more-link{
+  color: #999;
+}
+a.more-link:hover {
+  color: #258fb8;
+  text-decoration: none;
+}
+.post {
+  margin-top: 1em;
+  border-bottom: 1px dashed #ccc;
+}
+.allleft{
+  float: left;
+}
+.clearfix {
+zoom: 1;
+}
 
+.allright{
+  float: right;
+}
+.post-entry {
+  text-indent: 2em;
+}
+.post-entry blockquote {
+  text-indent: 2em;
+ 
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+background: rgb(236, 236, 236);
+  /*padding: 0.2em 20px;*/
 
+  font-size: 14px;
+}
 /* GENERAL ELEMENT TYPE STYLES */
 
 h1 {
   font-size: 32px;
+  text-indent: 0;
 } 
 
 h2 {
   font-size: 22px;
-  font-weight: bold;
+  /*font-weight: bold;*/
+  font-family: "Microsoft Yahei",Tahoma, Helvetica, Arial, "SimSun", sans-serif;
   color: #303030;
   margin-bottom: 8px;
+  text-indent: 0;
+
 } 
 
 h3 {
@@ -256,22 +302,26 @@ h3 {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 8px;
+  text-indent: 0;
 } 
  
 h4 {
   font-size: 16px;
   color: #303030;
   font-weight: bold;
+  text-indent: 0;
 } 
 
 h5 {
   font-size: 1em;
   color: #303030;
+  text-indent: 0;
 } 
 
 h6 {
   font-size: .8em;
   color: #303030;
+  text-indent: 0;
 } 
 
 p {
@@ -369,3 +419,22 @@ footer a:hover {
 
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (max-width: 479px) {}
+
+#main-nav{
+  margin-top: 1em;
+  font-size: 18px;
+  text-align: right;
+}
+#main-nav ul li{
+  list-style: none;
+}
+#main-nav a{
+  color: #999;
+}
+#main-nav a:hover {
+  color: #258fb8;
+  text-decoration: none;
+}
+.marktable td p{
+  vertical-align:middle;
+}

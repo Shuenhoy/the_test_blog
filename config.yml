@@ -1,0 +1,10 @@
+title:  Hoiblog
+subtitle: Shuenhoy's Blog
+manage:
+  type: manul
+  version: 1
+  always: true
+
+routes:
+  post: "#!/post/:name"
+  page: "#!/:name"
