@@ -15,7 +15,7 @@ this.github = {
 		var tlist=[];
 		for (var i = list.length - 1; i >= 0; i--) {
 			
-			tlist[i]=list[i].name.replace(/^([0-9]*-[0-9]*-[0-9]*-)/,'').replace(/\.md$/,'');
+			tlist[i]=list[i].name;
 		};
 		console.log(tlist)
 		return tlist
