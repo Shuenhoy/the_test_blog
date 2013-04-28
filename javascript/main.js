@@ -124,7 +124,7 @@ var app = Sammy(function() {
 		var newVersion = manages[config.manage.type].needUpdateTest(config, database);
 		if( !! newVersion) {
 			database.version = newVersion;
-			var postList = manages[config.manage.type].getlist();
+			var postList = manages[config.manage.type].getlist(config);
 			getPost(postList, 0, function() {
 				localStorage.database = JSON.stringify(database);
 				callback();
@@ -137,14 +137,14 @@ var app = Sammy(function() {
 	this.get('#!/', function() {
 		update(function() {
 			var html = template.render('index-tmpl', database);
-
+			$("title").text("Home | "+config.title);
 			main_content.html(html);
 		});
 	});
 	this.notFound = function(){
 		var html = template.render('404-tmpl', database);
 		main_content.html(html);
-		console.log(html)
+		
 		return false;
   	}
   	this.get("#!/404",function() {
@@ -164,6 +164,7 @@ var app = Sammy(function() {
 				var html = template.render('post-tmpl', post);
 				main_content.html(html);
 				$('pre code').each(function(i, e) {hljs.highlightBlock(e)});
+				$("title").text(post.title+" | "+config.title);
 				return true;
 			}
 		}
@@ -179,7 +180,7 @@ var app = Sammy(function() {
 			var page = readPostInfo(data, name);
 			var html = template.render('page-tmpl', page);
 			main_content.html(html);
-			
+			$("title").text(page.title+" | "+config.title);
 			$('pre code').each(function(i, e) {hljs.highlightBlock(e)});
 			
 		});
