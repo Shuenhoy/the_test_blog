@@ -191,7 +191,7 @@ var app = Sammy(function() {
 			
 		}).fail(function(){ 
   			this.notFound();
-})		});
+		});
 
 
 
