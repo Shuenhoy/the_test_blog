@@ -115,7 +115,7 @@ var app = Sammy(function() {
 
 			database.posts[index] = readPostInfo(data, postList[index]);
 			getPost(postList, index + 1, callback);
-		});
+		}); 
 	}
 
 
