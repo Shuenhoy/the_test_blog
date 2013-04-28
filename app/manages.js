@@ -2,8 +2,8 @@ this.github = {
 	needUpdateTest: function(config,database) {
 
 		var info = JSON.parse(getSync('https://api.github.com/repos/' + config.manage.user + '/' + config.manage.repo + '/branches'));
-
-		if(database.version !== info[0].commit.sha) {
+		
+		if(database.version != info[0].commit.sha) {
 			return info[0].commit.sha;
 		} else {
 			return false;
@@ -15,7 +15,7 @@ this.github = {
 		var tlist=[];
 		for (var i = list.length - 1; i >= 0; i--) {
 			
-			tlist[i]=list[i].name;
+			tlist.push(list[i].name);
 		};
 		console.log(tlist)
 		return tlist
