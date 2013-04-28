@@ -111,6 +111,7 @@ var app = Sammy(function() {
 
 	function getPost(postList, index, callback) {
 		if(!postList[index]) return callback();
+		console.log('post/' + postList[index][1])
 		$.get('post/' + postList[index][1] , function(data) {
 
 			database.posts[index] = readPostInfo(data, postList[index]);
@@ -126,7 +127,7 @@ var app = Sammy(function() {
 			database.version = newVersion;
 			var postList = manages[config.manage.type].getlist(config);
 			for(var i in postList){
-				postList[i] = [postList[i].replace(/^([0-9]*-[0-9]*-[0-9]*-)/,'').replace(/\.md$/,''),postList[i].replace(/\.md/g,'.md')];
+				postList[i] = [postList[i].replace(/^([0-9]*-[0-9]*-[0-9]*-)/,'').replace(/\.md$/,''),postList[i]];
 			}
 			getPost(postList, 0, function() {
 				localStorage.database = JSON.stringify(database);
