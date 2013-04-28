@@ -126,7 +126,7 @@ var app = Sammy(function() {
 			database.version = newVersion;
 			var postList = manages[config.manage.type].getlist(config);
 			for(var i in postList){
-				postList[i] = [postList[i].replace(/^([0-9]*-[0-9]*-[0-9]*-)/,'').replace(/\.md$/,''),postList[i]];
+				postList[i] = [postList[i].replace(/^([0-9]*-[0-9]*-[0-9]*-)/,'').replace(/\.md$/,''),postList[i].replace(/\.md/g,'.md')];
 			}
 			getPost(postList, 0, function() {
 				localStorage.database = JSON.stringify(database);
