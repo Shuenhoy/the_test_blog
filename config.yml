@@ -1,0 +1,12 @@
+title:  Hoiblog
+subtitle: Shuenhoy's Blog
+manage:
+  type: github
+  user: Shuenhoy
+  repo: the_test_blog
+  version: 1
+  always: true
+
+routes:
+  post: "#!/post/:name"
+  page: "#!/:name"
